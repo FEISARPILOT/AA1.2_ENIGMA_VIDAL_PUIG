@@ -12,7 +12,7 @@ Dita màquina, va ser inventada per Alemanya durant la WWII per protegir
 les seves comunicacions a l'hora de desplegar tàctiques de batalla.
 
 # ESQUEMA ASCII dels fitxers del projecte.
-
+```
 ENIGMA-BRANCH2/
 │
 ├── Desxifrat.txt - Resultat de desxifrar el missatge xifrat
@@ -29,7 +29,7 @@ ENIGMA-BRANCH2/
 ├── xifrar_desxifrar.py - Rotors que xifren i desxifren el missatge del usuari. 
 ├── rotors.py           - Modificar el cablejat i notch dels rotors (1 ,2, 3)
 ├── recursos.py         - Funcions auxiliars externes vinculades a mian.py, extern.py, xifrar_desxifrar.py i rotors.py (3)
-
+```
 
 ## Funcionament del projecte ##
 
