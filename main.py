@@ -6,6 +6,13 @@ base = os.path.dirname(__file__)
 # Missatge.txt = Ruta absoluta del fitxer on es guarda el missatge original
 ruta_missatge = os.path.join(base, "Missatge.txt") 
 
+
+# Mencionem els fitxers externs vinculats al 'main.py'.
+# Tot i així, nomes invoquem els métodes que necessitem
+# d'aquests respectius fitxers per descartar tots aquells 
+# métodes que no necessitem pas.
+from recursos import lletra_a_index
+
 sortir_menu = False
     
 print("-------------------------------")
@@ -115,3 +122,9 @@ if decisio in (1,2):
         lletres_finestra_valides = True
         
     print(f"[OK] El patró es correcte: {lletres_finestra}\n")
+
+    # Invoquem cada lletra introduïda per la finestra
+    pos1 = lletra_a_index(lletres_finestra[0])
+    pos2 = lletra_a_index(lletres_finestra[1])
+    pos3 = lletra_a_index(lletres_finestra[2])
+
