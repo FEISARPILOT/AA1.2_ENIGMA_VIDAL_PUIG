@@ -25,3 +25,46 @@ def lletra_a_index(lletra):
     index = codi_lletra - codi_A
     return index
 
+
+# guardar_missatge() -> 
+# Métode que serveix per guardar el missatge del usuari a "Missatge.txt"
+# per guardar allà el missatge en text plà.
+def guardar_missatge(ruta_missatge, missatge):
+    
+    # Si falla open() abans d'executar-se, ens hem d'assegurar
+    # que close() no s'executi sobre un fitxer mai obert.
+    fitxer = None 
+    missatge_al_txt = False
+    try:
+        # La "w" serveix per modificar el contingut d'un fitxer, o bé,
+        # si no existeix: el crea. NO afegim la codificació UTF-8 en el cas
+        # que l'usuari hagi afegit accents, ja que després els esborrarem.
+        fitxer = open(ruta_missatge, "w")
+
+        # Guardem el missatge del usuari a "Missatge.txt"
+        fitxer.write(missatge)
+        
+        missatge_al_txt = True
+      
+    
+    # Llancem excepcions específiques per a cada tipus d'error.
+    except FileNotFoundError as FileError:
+        print(f"[ERROR] No s'ha pogut trobar el fitxer a: {ruta_missatge}")
+        print("L'arxiu 'Missatge.txt' (key-sensitive) ha d'estar al projecte.")
+        print(f"[DEBUG] Detall de l'error: {FileError}")
+        
+    except PermissionError as ErrorPermission:   
+        print(f"[ERROR] L'usuari no té permís per modificar o crear el fitxer {ruta_missatge}")
+        print(f"[DEBUG] Detall de l'error: {ErrorPermission}")
+      
+    except Exception as e:   
+        print(f"[ERROR] Error inesperat a l'hora de guardar el missatge a: {ruta_missatge}")
+        print(f"[DEBUG] Detall de l'error: {e}")
+        
+    # Assegurem el tancament del fitxer només si el open() s'executa correctament,
+    # i detectem el fitxer encara obert.
+    finally:
+        if fitxer is not None and not fitxer.closed:
+            fitxer.close()
+        
+    return missatge_al_txt
