@@ -1,0 +1,6 @@
+GUARDAR_MISSATGE_INICIAL="Missatge.txt"
+GUARDAR_MISSATGE_XIFRAT="Xifrat.txt"
+GUARDAR_MISSATGE_DESXIFRAT="Desxifrat.txt"
+ROTOR1="rotor1.txt"
+ROTOR2="rotor2.txt"
+ROTOR3="rotor3.txt"

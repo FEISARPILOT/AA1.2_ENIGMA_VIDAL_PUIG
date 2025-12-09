@@ -12,7 +12,7 @@ ruta_missatge = os.path.join(base, "Missatge.txt")
 # d'aquests respectius fitxers per descartar tots aquells 
 # métodes que no necessitem pas.
 from recursos import lletra_a_index, guardar_missatge
-from xifrar_desxifrar import netejar_missatge
+from xifrar_desxifrar import netejar_missatge, processar_amb_rotors
 sortir_menu = False
     
 print("-------------------------------")
@@ -167,3 +167,8 @@ if decisio in (1,2):
     else:
         print("[INFO] Sortint del programa...")
         exit()
+
+    # L'usuari vol xifrar o desxifrar un missatge.
+    if decisio in (1, 2):
+        xifrar = (decisio == 1)   # Xifrar (1) = True => Desxifrar (2) = False
+        processar_amb_rotors(pos1, pos2, pos3, xifrar) 
