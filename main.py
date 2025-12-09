@@ -11,8 +11,8 @@ ruta_missatge = os.path.join(base, "Missatge.txt")
 # Tot i així, nomes invoquem els métodes que necessitem
 # d'aquests respectius fitxers per descartar tots aquells 
 # métodes que no necessitem pas.
-from recursos import lletra_a_index
-
+from recursos import lletra_a_index, guardar_missatge
+from xifrar_desxifrar import netejar_missatge
 sortir_menu = False
     
 print("-------------------------------")
@@ -128,3 +128,42 @@ if decisio in (1,2):
     pos2 = lletra_a_index(lletres_finestra[1])
     pos3 = lletra_a_index(lletres_finestra[2])
 
+    # Només sortim del bucle si el missatge del usuari compté només lletres 
+    missatge_valid = False
+    
+    while not missatge_valid:
+        # print("[INFO] Per motius de segureat, el missatge NOMÉS pot contenir entre 4-30 caracters.")
+        missatge_usuari = input("Introdueix un missatge: ").strip()
+        
+        # L'usuari no pot introduïr missatges buits
+        if not missatge_usuari:
+            print(f"[ERROR] El missatge introduït està buit. Escriu un missatge entre 4-30 caracters")
+            continue
+
+        # S'ha de netejar el missatge per verificar 
+        # que l'usuari ha introduït lletres en el missatge.
+        missatge_net = netejar_missatge(missatge_usuari)
+        if not missatge_net:
+            print(f"[ERROR] El missatge introduït no conté lletres vàlides (A-Z). Torna-ho a intentar.")
+            continue
+
+        # total_missatge = len(missatge_usuari)
+        # if not (4 <= total_missatge <= 30):
+        #     print(f"[ERROR] El missatge introduït no té una longitud entre 4-30 caracters.")
+        #     continue      
+              
+        # De moment, el misstge es valid encara es valid sense 
+        # importar els simbols, numeros i lletres.
+        missatge_valid = True
+        
+        print(f"[OK] El missatge es correcte parcialment: {lletres_finestra}\n")
+        print(f"[INFO] Procedint a guardar-lo a '{ruta_missatge}'\n")
+        print(f"[INFO] Loading... '\n")
+    
+    verificar_missatge = guardar_missatge(ruta_missatge, missatge_usuari)
+    if (verificar_missatge):
+        print(f"[OK] Missatge guardat correctament a '{ruta_missatge}'\n")
+        # L'output del error s'ha escrit a la funció guardar_missatge()
+    else:
+        print("[INFO] Sortint del programa...")
+        exit()
