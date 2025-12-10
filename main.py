@@ -12,7 +12,9 @@ ruta_missatge = os.path.join(base, "Missatge.txt")
 # d'aquests respectius fitxers per descartar tots aquells 
 # métodes que no necessitem pas.
 from recursos import lletra_a_index, guardar_missatge
+from rotors import editar_rotor
 from xifrar_desxifrar import netejar_missatge, processar_amb_rotors
+
 sortir_menu = False
     
 print("-------------------------------")
@@ -172,3 +174,34 @@ if decisio in (1,2):
     if decisio in (1, 2):
         xifrar = (decisio == 1)   # Xifrar (1) = True => Desxifrar (2) = False
         processar_amb_rotors(pos1, pos2, pos3, xifrar) 
+
+
+# Cambiar rotor (3) 
+elif decisio == 3:
+    
+    input_rotors = False
+    
+    #Gestio entrada valor rotor a editar.
+    while not input_rotors:
+        num_rotor_usuari = input("Quin rotor vols editar? (ex: 1, 2, 3): ").strip()
+        
+        # Intentem convertir el input del usuari a Int
+        try:
+            num_rotor = int(num_rotor_usuari)
+        except ValueError:
+            print("[ERROR] Has d'afegir un número.")
+            continue
+        
+        if 1 <= num_rotor_usuari <= 3:
+            arxiu = "rotor" + num_rotor_usuari + ".txt"
+            print(f"Nom del arxiu del rotor a editar: {arxiu} ")
+            
+            editar_rotor(arxiu)
+            input_rotors = True
+        else:
+            print("[ERROR] Has d'afegir un nombre entre 1 i 3.")
+
+#Sortir(4)
+else:
+    print("\n[OK] Sortint de la maquina Enigma...")
+    exit()

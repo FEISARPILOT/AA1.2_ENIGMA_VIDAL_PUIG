@@ -25,6 +25,22 @@ def lletra_a_index(lletra):
     index = codi_lletra - codi_A
     return index
 
+# index_a_lletra() -> Métode que fa el revès que el métode lletra_a_index().
+#                     Es a dir, index_a_lletra() serveix per obtenir la lletra ASCII 
+#                     acord a una possició númerica.
+def index_a_lletra(index):
+              
+    # Ens asegurem que la lletra sempre sigui majúscula.
+    # IMPORTANT! ASCII es key-sensitive (A != a) -> 'A' = 65, però 'a' = 97.
+    codi_A = ord('A')
+ 
+    # Calculem el codi ASCII final sumant l'índex
+    codi_resultat = codi_A + index
+
+    # Averigüem la lletra ASCII acord a la seva possicó
+    lletra = chr(codi_resultat)
+    return lletra
+
 
 # guardar_missatge() -> 
 # Métode que serveix per guardar el missatge del usuari a "Missatge.txt"
