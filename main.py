@@ -11,7 +11,7 @@ ruta_missatge = os.path.join(base, "Missatge.txt")
 # Tot i així, nomes invoquem els métodes que necessitem
 # d'aquests respectius fitxers per descartar tots aquells 
 # métodes que no necessitem pas.
-from recursos import lletra_a_index, guardar_missatge
+from recursos import lletra_a_index, guardar_missatge, verificar_fitxers_enigma
 from rotors import editar_rotor
 from xifrar_desxifrar import netejar_missatge, processar_amb_rotors
 
@@ -32,6 +32,10 @@ print(r"""
     """)
 
 print("-------------------------------")
+
+if not verificar_fitxers_enigma():
+    print("[ERROR] El programa no es pot iniciar si falten fitxers essencials.")
+    exit()
     
 # Només es surt del menú principal d'Enigma
 # si s'escull una opció correcte.
