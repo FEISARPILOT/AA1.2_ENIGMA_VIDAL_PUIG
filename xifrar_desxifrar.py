@@ -1,5 +1,5 @@
 
-from recursos import lletra_a_index
+from recursos import lletra_a_index, index_a_lletra
 import extern, unicodedata
 
 # Per xifrar o desxifrar el missatge del usuari, necessitarem invocar les 
@@ -69,7 +69,28 @@ def netejar_missatge(text):
     # El missatge net, el convertim d'Array a String
     output_final = "".join(resultat)
     return output_final
+# Retorna la permutació inversa d'un rotor
+def inversa_permutacio(perm):
+    
+    """
+    Donada una permutació 'perm' (string de 26 lletres),
+    retorna la permutació inversa com a string de 26 lletres.
+    """
+   
+    # Creem una llista de 26 elements buits que ens serveix de plantilla
+    # per anar posant-hi lletres a les posicions adequades.
+    inv = [""] * 26
 
+    # Recorrem cada posició i lletra de la permutació
+    for index_sortida, lletra_sortida in enumerate(perm):
+        
+        # i = posició original de la lletra (entrada del rotor)
+        # lletra = lletra de sortida per a aquesta posició
+        index_entrada = lletra_a_index(lletra_sortida)
+        inv[index_entrada] = index_a_lletra(index_sortida)
+
+    # Convertim l'Array (cablejat = 1ra linia del rotor) a String
+    return "".join(inv)
 #Funció per processar un missatge (xifrar o desxifrar) amb la lògica dels rotors.
 def pasar_missatge_rotors(pos1, pos2, pos3,
                                arxiu_entra, arxiu_surt,
@@ -88,6 +109,11 @@ def pasar_missatge_rotors(pos1, pos2, pos3,
     except:
         print(f"[ERROR] No s'ha pogut carregar un rotor")
         return
+    # Invertir les permutacions si s'està desxifrant
+    if not xifrar:
+        perm1 = inversa_permutacio(perm1)
+        perm2 = inversa_permutacio(perm2)
+        perm3 = inversa_permutacio(perm3)
     
 # Simplement extreure els valors deks arxius rotors, 
 # es retorna la cadena perm i l'index notch.
