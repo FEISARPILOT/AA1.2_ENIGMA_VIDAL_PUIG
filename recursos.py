@@ -1,4 +1,5 @@
-
+import extern
+import os
 #     # Retornem el patró de lletres i patró brut
 #     return lletres_netejades, no_lletres
 
