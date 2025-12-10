@@ -91,10 +91,11 @@ if decisio in (1,2):
     # Es tornarà True si el format de les lletres de la finestra son correctes.
     lletres_finestra_valides = False
     
-    # Si es detecta un element del array no vàlid, reiniciem el bucle.
-    element_array_no_valid = False
-    
     while not lletres_finestra_valides:
+        
+        # Si es detecta un element del array no vàlid, reiniciem el bucle.
+        element_array_no_valid = False
+
         print("[INFO] Les lletres no tenen perquè ser ordenades alfabeticament. (A-Z)")
         print("[INFO] Cada una de les 3 lletres es OBLIGATORI que estiguin separades per un espai. Ex: A B C")
         lletres_finestra = input("Introdueix lletres de la finestra (ex: A B C): ").upper().split()
@@ -162,7 +163,7 @@ if decisio in (1,2):
         # importar els simbols, numeros i lletres.
         missatge_valid = True
         
-        print(f"[OK] El missatge es correcte parcialment: {lletres_finestra}\n")
+        print(f"[OK] El missatge es correcte: {lletres_finestra}\n")
         print(f"[INFO] Procedint a guardar-lo a '{ruta_missatge}'\n")
         print(f"[INFO] Loading... '\n")
     
@@ -196,8 +197,8 @@ elif decisio == 3:
             print("[ERROR] Has d'afegir un número.")
             continue
         
-        if 1 <= num_rotor_usuari <= 3:
-            arxiu = "rotor" + num_rotor_usuari + ".txt"
+        if 1 <= num_rotor <= 3:
+            arxiu = "rotor" + str(num_rotor) + ".txt"
             print(f"Nom del arxiu del rotor a editar: {arxiu} ")
             
             editar_rotor(arxiu)
